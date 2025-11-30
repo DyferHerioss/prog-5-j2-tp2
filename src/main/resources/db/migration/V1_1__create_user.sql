@@ -1,0 +1,5 @@
+-- CREATE USER dyferHerios WITH PASSWORD 'rentalManagement';
+-- GRANT ALL PRIVILEGES ON DATABASE rent_management TO dyferHerios;
+--
+-- GRANT ALL PRIVILEGES ON ALL TABLES IN SCHEMA public TO dyferHerios;
+-- GRANT ALL PRIVILEGES ON ALL SEQUENCES IN SCHEMA public TO dyferHerios;

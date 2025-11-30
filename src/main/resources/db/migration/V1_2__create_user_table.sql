@@ -1,4 +1,10 @@
-CREATE TYPE user_type AS ENUM ('PERSON', 'COMPANY', 'ORGANIZATION')
+DO $$
+BEGIN
+    IF NOT EXISTS (SELECT 1 FROM pg_type WHERE typname = 'user_type') THEN
+CREATE TYPE user_type AS ENUM ('PERSON', 'COMPANY', 'ORGANIZATION');
+END IF;
+END$$;
+
 
 CREATE TABLE IF NOT EXISTS "user" (
                                       id UUID PRIMARY KEY,
