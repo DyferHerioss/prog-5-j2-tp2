@@ -1,33 +1,10 @@
-
 <?xml version="1.0"?>
-<!DOCTYPE module PUBLIC
-    "-//Checkstyle//DTD Checkstyle Configuration 1.3//EN"
-    "https://checkstyle.org/dtds/configuration_1_3.dtd">
-
+<!DOCTYPE module PUBLIC "-//Checkstyle//DTD Checkstyle Configuration 1.3//EN" "https://checkstyle.org/dtds/configuration_1_3.dtd">
 <module name="Checker">
+    <module name="NewlineAtEndOfFile"/>
     <module name="TreeWalker">
-
-        <module name="TypeName">
-            <property name="format" value="^[A-Z][a-zA-Z0-9]*$"/>
-        </module>
-
-        <module name="MethodName">
-            <property name="format" value="^[a-z][a-zA-Z0-9]*$"/>
-        </module>
-
-        <module name="MemberName">
-            <property name="format" value="^[a-z][a-zA-Z0-9]*$"/>
-        </module>
-
-        <module name="ConstantName">
-            <property name="format" value="^[A-Z][A-Z0-9]*(_[A-Z0-9]+)*$"/>
-        </module>
-
-        <module name="LineLength">
-            <property name="max" value="120"/>
-        </module>
-
-        <module name="TodoComment"/>
-
+        <module name="AbbreviationAsWordInName"/>
+        <module name="PackageAnnotation"/>
     </module>
 </module>
+
