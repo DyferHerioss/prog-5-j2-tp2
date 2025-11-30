@@ -1,0 +1,704 @@
+openapi: 3.1.0
+info:
+  title: Rent Management - OpenAPI 3.0
+  description: This is a simple application about rent management
+  version: 1.0.0
+servers:
+  - url: https://rent_management
+paths:
+  "/users":
+    put:
+      tags:
+        - users
+      summary: Create or update users
+      operationId: crupdateUsers
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: array
+              items:
+                $ref: "#/components/schemas/CrupdateUser"
+      responses:
+        '200':
+          description: Users created or updated successful
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/User"
+        '400':
+          $ref: "#/components/responses/BadRequest"
+        '409':
+          $ref: "#/components/responses/Conflict"
+        '500':
+          $ref: "#/components/responses/InternalServerError"
+    get:
+      tags:
+        - users
+      summary: Get all users info
+      operationId: getAllUsers
+      parameters:
+        - $ref: "#/components/parameters/name"
+        - $ref: "#/components/parameters/creation_date"
+        - $ref: "#/components/parameters/work_field"
+        - $ref: "#/components/parameters/user_type"
+      responses:
+        '200':
+          description: Get users information successfully
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/User"
+        '400':
+          $ref: "#/components/responses/BadRequest"
+        '409':
+          $ref: "#/components/responses/Conflict"
+        '500':
+          $ref: "#/components/responses/InternalServerError"
+  "/users/{id}":
+    put:
+      tags:
+        - users
+      summary: Update user
+      operationId: updateUser
+      parameters:
+        - $ref: "#/components/parameters/id"
+      responses:
+        '200':
+          description: User updated successfully
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/User"
+        '400':
+          $ref: "#/components/responses/BadRequest"
+        '409':
+          $ref: "#/components/responses/Conflict"
+        '500':
+          $ref: "#/components/responses/InternalServerError"
+    get:
+      tags:
+        - users
+      summary: Get all user info
+      operationId: getUser
+      parameters:
+        - $ref: "#/components/parameters/id"
+      responses:
+        '200':
+          description: Get users information successfully
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/User"
+        '400':
+          $ref: "#/components/responses/BadRequest"
+        '409':
+          $ref: "#/components/responses/Conflict"
+        '500':
+          $ref: "#/components/responses/InternalServerError"
+  "/assets":
+    put:
+      tags:
+        - assets
+      summary: Create or update assets
+      operationId: crupdateAssets
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: array
+              items:
+                $ref: "#/components/schemas/CrupdateAsset"
+      responses:
+        '200':
+          description: Assets created or updated successfuly
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/Asset"
+        '400':
+          $ref: "#/components/responses/BadRequest"
+        '409':
+          $ref: "#/components/responses/Conflict"
+        '500':
+          $ref: "#/components/responses/InternalServerError"
+    get:
+      tags:
+        - assets
+      summary: Get all assets info
+      operationId: getAllAssets
+      parameters:
+        - $ref: "#/components/parameters/name"
+        - $ref: "#/components/parameters/creation_date"
+        - $ref: "#/components/parameters/asset_type"
+      responses:
+        '200':
+          description: Get assets information successfully
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/Asset"
+        '400':
+          $ref: "#/components/responses/BadRequest"
+        '409':
+          $ref: "#/components/responses/Conflict"
+        '500':
+          $ref: "#/components/responses/InternalServerError"
+  "/assets/{id}":
+    put:
+      tags:
+        - assets
+      summary: Update asset
+      operationId: updateAsset
+      parameters:
+        - $ref: "#/components/parameters/id"
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/CrupdateAsset"
+      responses:
+        '200':
+          description: Asset updated successfully
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Asset"
+        '400':
+          $ref: "#/components/responses/BadRequest"
+        '409':
+          $ref: "#/components/responses/Conflict"
+        '500':
+          $ref: "#/components/responses/InternalServerError"
+    get:
+      tags:
+        - assets
+      summary: Get all asset info
+      operationId: getAsset
+      parameters:
+        - $ref: "#/components/parameters/id"
+      responses:
+        '200':
+          description: Get asset information successfully
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Asset"
+        '400':
+          $ref: "#/components/responses/BadRequest"
+        '409':
+          $ref: "#/components/responses/Conflict"
+        '500':
+          $ref: "#/components/responses/InternalServerError"
+
+  "/rentals":
+    put:
+      tags:
+        - rentals
+      summary: Create or update rentals
+      operationId: crupdateRentals
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: array
+              items:
+                $ref: "#/components/schemas/CrupdateRental"
+      responses:
+        '200':
+          description: Rentals created or updated successfully
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/Rental"
+        '400':
+          $ref: "#/components/responses/BadRequest"
+        '409':
+          $ref: "#/components/responses/Conflict"
+        '500':
+          $ref: "#/components/responses/InternalServerError"
+    get:
+      tags:
+        - rentals
+      summary: Get all rentals info
+      operationId: getAllRentals
+      parameters:
+        - $ref: "#/components/parameters/user_id"
+        - $ref: "#/components/parameters/asset_id"
+        - $ref: "#/components/parameters/start_date"
+        - $ref: "#/components/parameters/end_date"
+        - $ref: "#/components/parameters/rent_price"
+        - $ref: "#/components/parameters/creation_date"
+        - $ref: "#/components/parameters/rental_status"
+      responses:
+        '200':
+          description: Get rentals information successfully
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/Rental"
+        '400':
+          $ref: "#/components/responses/BadRequest"
+        '409':
+          $ref: "#/components/responses/Conflict"
+        '500':
+          $ref: "#/components/responses/InternalServerError"
+  "/rentals/{id}":
+    put:
+      tags:
+        - rentals
+      summary: Update rentals
+      operationId: updateRental
+      parameters:
+        - $ref: "#/components/parameters/id"
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/Rental"
+      responses:
+        '200':
+          description: Rental updated successfully
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Rental"
+        '400':
+          $ref: "#/components/responses/BadRequest"
+        '409':
+          $ref: "#/components/responses/Conflict"
+        '500':
+          $ref: "#/components/responses/InternalServerError"
+    get:
+      tags:
+        - rentals
+      summary: Get all rental info
+      operationId: getRental
+      parameters:
+        - $ref: "#/components/parameters/id"
+      responses:
+        '200':
+          description: Get rental information successfully
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Rental"
+        '400':
+          $ref: "#/components/responses/BadRequest"
+        '409':
+          $ref: "#/components/responses/Conflict"
+        '500':
+          $ref: "#/components/responses/InternalServerError"
+  "/payments":
+    put:
+      tags:
+        - payments
+      summary: Create or update payments
+      operationId: crupdatePayments
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: array
+              items:
+                $ref: "#/components/schemas/CrupdatePayment"
+      responses:
+        '200':
+          description: Payments created or updated successfully
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/Payment"
+        '400':
+          $ref: "#/components/responses/BadRequest"
+        '409':
+          $ref: "#/components/responses/Conflict"
+        '500':
+          $ref: "#/components/responses/InternalServerError"
+    get:
+      tags:
+        - payments
+      summary: Get all payments info
+      operationId: getAllPayments
+      parameters:
+        - $ref: "#/components/parameters/user_id"
+        - $ref: "#/components/parameters/asset_id"
+        - $ref: "#/components/parameters/creation_date"
+      responses:
+        '200':
+          description: Get payments information successfully
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/Payment"
+        '400':
+          $ref: "#/components/responses/BadRequest"
+        '409':
+          $ref: "#/components/responses/Conflict"
+        '500':
+          $ref: "#/components/responses/InternalServerError"
+  "/payments/{id}":
+    put:
+      tags:
+        - payments
+      summary: Update payment
+      operationId: updatePayment
+      parameters:
+        - $ref: "#/components/parameters/id"
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/Payment"
+      responses:
+        '200':
+          description: Payment updated successfully
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Payment"
+        '400':
+          $ref: "#/components/responses/BadRequest"
+        '409':
+          $ref: "#/components/responses/Conflict"
+        '500':
+          $ref: "#/components/responses/InternalServerError"
+    get:
+      tags:
+        - payments
+      summary: Get all payment info
+      operationId: getPayment
+      parameters:
+        - $ref: "#/components/parameters/id"
+      responses:
+        '200':
+          description: Get payment information successfully
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Payment"
+        '400':
+          $ref: "#/components/responses/BadRequest"
+        '409':
+          $ref: "#/components/responses/Conflict"
+        '500':
+          $ref: "#/components/responses/InternalServerError"
+components:
+  schemas:
+    CrupdateUser:
+      type: object
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+        email:
+          type: string
+        type:
+          $ref: "#/components/schemas/User_type"
+        address:
+          type: string
+        field_work:
+          type: string
+        creation_date:
+          type: string
+          format: date
+        update_date:
+          type: string
+          format: date
+    CrupdateAsset:
+      type: object
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+        owner_id:
+          type: string
+        price:
+          type: number
+        type:
+          allOf:
+            - $ref: "#/components/schemas/Asset_type"
+        creation_date:
+          type: string
+          format: date
+        update_date:
+          type: string
+          format: date
+    CrupdateRental:
+      type: object
+      properties:
+        id:
+          type: string
+        asset_id:
+          type: string
+        renter_id:
+          type: string
+        creation_date:
+          type: string
+          format: date
+        update_date:
+          type: string
+          format: date
+    CrupdatePayment:
+      type: object
+      properties:
+        id:
+          type: string
+        rental_id:
+          type: string
+        paid_amount:
+          type: number
+        creation_date:
+          type: string
+          format: date
+        update_date:
+          type: string
+          format: date
+    Payment:
+      type: object
+      properties:
+        id:
+          type: string
+        rental:
+          allOf:
+            - $ref: "#/components/schemas/Rental"
+        paid_amount:
+          type: number
+        creation_date:
+          type: string
+          format: date
+        update_date:
+          type: string
+          format: date
+    Asset:
+      type: object
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+        type:
+          allOf:
+            - $ref: "#/components/schemas/Asset_type"
+        owner:
+          allOf:
+            - $ref: "#/components/schemas/User_type"
+        price:
+          type: number
+        creation_date:
+          type: string
+          format: date
+        update_date:
+          type: string
+          format: date
+    Rental:
+      type: object
+      properties:
+        id:
+          type: string
+        asset:
+          allOf:
+            - $ref: "#/components/schemas/Asset"
+        renter:
+          allOf:
+            - $ref: "#/components/schemas/User"
+        creation_date:
+          type: string
+          format: date
+        update_date:
+          type: string
+          format: date
+    User:
+      type: object
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+        email:
+          type: string
+        type:
+          allOf:
+            - $ref: "#/components/parameters/user_type"
+        address:
+          type: string
+        field_work:
+          type: string
+        creation_date:
+          type: string
+          format: date
+        update_date:
+          type: string
+          format: date
+    User_type:
+      enum:
+        - PERSON
+        - ORGANIZATION
+        - COMPANY
+    Asset_type:
+      enum:
+        - FINANCIAL
+        - MATERIAL
+    Rental_status:
+      enum:
+        - NOT_STARTED
+        - IN_PROGRESS
+        - FINISHED
+  parameters:
+    user_id:
+      name: user_id
+      in: path
+      schema:
+        type: string
+      required: true
+    asset_id:
+      name: asset_id
+      in: path
+      schema:
+        type: string
+      required: true
+    id:
+      name: id
+      in: query
+      required: true
+      schema:
+        type: string
+    name:
+      name: name
+      in: query
+      required: false
+      schema:
+        type: string
+    creation_date:
+      name: creation_date
+      in: query
+      required: false
+      schema:
+        type: string
+        format: date
+    start_date:
+      name: start_date
+      in: query
+      required: false
+      schema:
+        type: string
+        format: date
+    end_date:
+      name: end_date
+      in: query
+      required: false
+      schema:
+        type: string
+        format: date
+    work_field:
+      name: work_field
+      in: query
+      required: false
+      schema:
+        type: string
+    asset_type:
+      name: asset_type
+      in: query
+      required: false
+      schema:
+        type: string
+    user_type:
+      name: user_type
+      in: query
+      required: false
+      schema:
+        type: string
+    rental_status:
+      name: rental_status
+      in: query
+      required: false
+      schema:
+        type: string
+    rent_price:
+      name: rental_price
+      in: query
+      required: false
+      schema:
+        type: string
+  responses:
+    NotFound:
+      description: Resource not found
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              error:
+                type: string
+                example: "Asset with id '123e4567-e89b-12d3-a456-426614174000' not found."
+    BadRequest:
+      description: Invalid request
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              error:
+                type: string
+                example: "Field 'status' must be of type rental_status."
+    InternalServerError:
+      description: Internal server error
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              error:
+                type: string
+                example: "Internal server error: Unable to connect to the database."
+    Conflict:
+      description: Resource conflict
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              error:
+                type: string
+                example: "User with email 'abc@example.com' already exists."
+    Unauthorized:
+      description: Authentication required
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              error:
+                type: string
+                example: "Authentication required."
+    Forbidden:
+      description: Action forbidden
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              error:
+                type: string
+                example: "You do not have permission to perform this action."
+
