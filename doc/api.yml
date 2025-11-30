@@ -501,7 +501,7 @@ components:
           allOf:
             - $ref: "#/components/schemas/Asset_type"
         owner:
-          allOf:
+          allO:
             - $ref: "#/components/schemas/User_type"
         price:
           type: number
@@ -562,7 +562,7 @@ components:
     Rental_status:
       enum:
         - NOT_STARTED
-        - IN_PROGRESS
+        - RENTING
         - FINISHED
   parameters:
     user_id:
@@ -650,7 +650,6 @@ components:
             properties:
               error:
                 type: string
-                example: "Asset with id '123e4567-e89b-12d3-a456-426614174000' not found."
     BadRequest:
       description: Invalid request
       content:
@@ -660,7 +659,6 @@ components:
             properties:
               error:
                 type: string
-                example: "Field 'status' must be of type rental_status."
     InternalServerError:
       description: Internal server error
       content:
@@ -670,7 +668,6 @@ components:
             properties:
               error:
                 type: string
-                example: "Internal server error: Unable to connect to the database."
     Conflict:
       description: Resource conflict
       content:
@@ -680,7 +677,6 @@ components:
             properties:
               error:
                 type: string
-                example: "User with email 'abc@example.com' already exists."
     Unauthorized:
       description: Authentication required
       content:
@@ -690,7 +686,6 @@ components:
             properties:
               error:
                 type: string
-                example: "Authentication required."
     Forbidden:
       description: Action forbidden
       content:
@@ -700,5 +695,4 @@ components:
             properties:
               error:
                 type: string
-                example: "You do not have permission to perform this action."
 
